@@ -1,0 +1,112 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Tiles/tiles.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 16, 16 )
+
+[node name="Node" type="Node"]
+
+[node name="Tiles" type="Node" parent="." index="0"]
+
+[node name="tile_0" type="Sprite" parent="Tiles" index="0"]
+
+texture = ExtResource( 1 )
+hframes = 4
+region_rect = Rect2( 0, 0, 32, 32 )
+_sections_unfolded = [ "Animation", "Region", "Transform" ]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Tiles/tile_0" index="0"]
+
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tiles/tile_0/StaticBody2D" index="0"]
+
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="tile_1" type="Sprite" parent="Tiles" index="1"]
+
+visible = false
+texture = ExtResource( 1 )
+hframes = 4
+frame = 1
+region_rect = Rect2( 0, 0, 32, 32 )
+_sections_unfolded = [ "Animation", "Region" ]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Tiles/tile_1" index="0"]
+
+scale = Vector2( 0.5, 0.5 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tiles/tile_1/StaticBody2D" index="0"]
+
+shape = SubResource( 1 )
+
+[node name="tile_2" type="Sprite" parent="Tiles" index="2"]
+
+visible = false
+texture = ExtResource( 1 )
+hframes = 4
+frame = 2
+region_rect = Rect2( 0, 0, 32, 32 )
+_sections_unfolded = [ "Animation", "Region" ]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Tiles/tile_2" index="0"]
+
+scale = Vector2( 0.5, 0.5 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tiles/tile_2/StaticBody2D" index="0"]
+
+shape = SubResource( 1 )
+
+[node name="tile_3" type="Sprite" parent="Tiles" index="3"]
+
+visible = false
+texture = ExtResource( 1 )
+hframes = 4
+frame = 3
+region_rect = Rect2( 0, 0, 32, 32 )
+_sections_unfolded = [ "Animation", "Region" ]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Tiles/tile_3" index="0"]
+
+scale = Vector2( 0.5, 0.5 )
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+_sections_unfolded = [ "Collision", "Transform" ]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tiles/tile_3/StaticBody2D" index="0"]
+
+shape = SubResource( 1 )
+
+
