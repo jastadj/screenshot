@@ -1,8 +1,11 @@
 extends Node2D
 
+enum CAMERA_MODE{CAMERA_OFF, CAMERA_TAKE, CAMERA_PLACE}
+
 # reticle properties
 var width = 4
 var height = 3
+var mode = CAMERA_OFF
 
 # references
 var camera
@@ -31,7 +34,12 @@ func _ready():
 	
 
 func _process(delta):
-	if is_visible_in_tree():
+	
+	if mode == CAMERA_OFF:
+		hide()
+	
+	else:
+		show()
 		
 		# get global mouse position
 		var gmouse = get_parent().get_parent().get_global_mouse_position()
@@ -48,7 +56,7 @@ func _process(delta):
 func takeSnapshot():
 
 	# if reticle is invisible, ignore command
-	if is_visible_in_tree() == false:
+	if mode ==  CAMERA_OFF:
 		return null
 	
 	# array of tile values for snapshot
@@ -84,7 +92,7 @@ func takeSnapshot():
 
 func placeSnapshot(snapshot):
 	
-	if snapshot == null:
+	if snapshot == null || mode == CAMERA_OFF:
 		return false
 	
 	# get global mouse position
@@ -133,6 +141,8 @@ func updateReticleSize():
 	
 	var tw = width * 4
 	var th = height * 4
+	
+	_r.clear()
 	
 	# set top left corner
 	_r.set_cell(0,0,0)

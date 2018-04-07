@@ -4,7 +4,7 @@
 [ext_resource path="res://Camera/ReticleTileSet.tres" type="TileSet" id=2]
 [ext_resource path="res://Tiles/tileset.tres" type="TileSet" id=3]
 
-[node name="ReticleLayer" type="CanvasLayer" index="0"]
+[node name="ReticleLayer" type="CanvasLayer"]
 
 layer = 1
 offset = Vector2( 0, 0 )
@@ -61,13 +61,6 @@ format = 1
 tile_data = PoolIntArray(  )
 _sections_unfolded = [ "Cell", "Transform", "Visibility" ]
 
-[node name="BackBufferCopy" type="BackBufferCopy" parent="Reticle" index="2"]
-
-position = Vector2( 100, 100 )
-copy_mode = 1
-rect = Rect2( -100, -100, 200, 200 )
-_sections_unfolded = [ "Transform", "Visibility" ]
-
-[node name="testsprite" type="Sprite" parent="Reticle" index="3"]
+[node name="testsprite" type="Sprite" parent="Reticle" index="2"]
 
 

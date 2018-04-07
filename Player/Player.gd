@@ -38,6 +38,8 @@ func _physics_process(delta):
 	
 	friction = false;
 	if !is_on_floor():
+		if is_on_ceiling():
+			vel.y = 0
 		vel.y += GRAVITY
 	else:
 		vel.y = GRAVITY
@@ -47,6 +49,8 @@ func _physics_process(delta):
 	move_and_slide(vel, UP)
 	
 	updateAnim()
+	
+
 	
 
 
@@ -107,17 +111,19 @@ func _input(event):
 	if event.is_action("ui_takesnapshot") && event.is_pressed():
 		var newsnapshot = reticle.takeSnapshot()
 		
-		if newsnapshot == null:
-			print("Error taking snapshot, it is null!")
-		
-		addSnapshot(newsnapshot)
+		if newsnapshot != null:
+			addSnapshot(newsnapshot)
+			reticle.mode = 0
 	
 	elif event.is_action("ui_placesnapshot") && event.is_pressed():
-		if snapshots.empty():
-			print("snapshots are empty")
-		else:
+		if !snapshots.empty():
 			placeSnapshot( snapshots[ snapshots.size()-1] )
-			
+			reticle.mode = 0
+	elif event.is_action("ui_cameraon") && event.is_pressed():
+		if reticle.mode != 0:
+			reticle.mode = 0
+		else:
+			reticle.mode = 1
 func addSnapshot(snapshot):
 	snapshots.append(snapshot)
 	print("Snapshot added.")
