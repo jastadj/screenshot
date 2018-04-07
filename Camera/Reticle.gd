@@ -8,6 +8,7 @@ var height = 3
 var camera
 var player
 var tilemap
+var pastemap
 
 # classes
 var snapshotObj
@@ -22,6 +23,7 @@ func _ready():
 	player = get_parent().get_parent()
 	camera = player.get_node("Camera2D")
 	tilemap = get_node("/root/World/TileMap")
+	pastemap = get_node("PasteTileMap")
 	
 	# get class references
 	snapshotObj = load("res://Camera/snapshot.gd")
@@ -96,23 +98,36 @@ func placeSnapshot(snapshot):
 	#	return null
 
 	# check that tile placement area is clear
-	var areaclear = true
-	for y in range(gtile.y, gtile.y + snapshot.height):
-		for x in range(gtile.x, gtile.x + snapshot.width):
-			if tilemap.get_cell(x,y) != -1:
-				areaclear = false
+	#var areaclear = true
+	#for y in range(gtile.y, gtile.y + snapshot.height):
+	#	for x in range(gtile.x, gtile.x + snapshot.width):
+	#		if tilemap.get_cell(x,y) != -1:
+	#			areaclear = false
 
-	if !areaclear:
-		return false
+	#if !areaclear:
+	#	print("Snapshot paste blocked by tiles.")
+	#	return false
 		
 	# set tile map to snapshot tiles
 	for y in range(snapshot.height):
 		for x in range(snapshot.width):
-			var ttile = snapshot.tiles[y][x]	
-			if ttile >= 0:
-				tilemap.set_cell(gtile.x + x, gtile.y + y, snapshot.tiles[y][x])
+			var ttile = snapshot.tiles[y][x]
+			var tpos = Vector2(gtile.x + x, gtile.y + y)
+			if ttile >= 0 && tilemap.get_cell(tpos.x, tpos.y) == -1:
+				tilemap.set_cell(tpos.x, tpos.y, snapshot.tiles[y][x])
 	
 	return true
+
+func updatePasteMap(snapshot):
+	
+	if snapshot == null:
+		return
+	
+	for y in range(snapshot.height):
+		for x in range(snapshot.width):
+			pastemap.set_cell(x,y, snapshot.tiles[y][x])
+	
+	pass
 
 func updateReticleSize():
 	

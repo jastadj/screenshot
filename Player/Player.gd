@@ -53,6 +53,9 @@ func _input(event):
 func addSnapshot(snapshot):
 	snapshots.append(snapshot)
 	print("Snapshot added.")
+	
+	# update reticle paste map
+	reticle.updatePasteMap(snapshot)
 
 func placeSnapshot(snapshot):
 	if reticle.placeSnapshot(snapshot):
